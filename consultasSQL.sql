@@ -35,7 +35,7 @@ CREATE TABLE venta (
 	CONSTRAINT venta_id_fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 )
 
-/*Todos los productos del rubro "librería", creados hoy*/
+/*Todos los productos del rubro "librerï¿½a", creados hoy*/
 SELECT * 
 FROM producto 
 WHERE id_rubro = (
@@ -71,11 +71,12 @@ WHERE (codigo_producto) =
 		(SELECT id_rubro FROM rubro WHERE rubro = 'bazar'))
 
 
-/*Rubros que no tienen ventas en los últimos 2 meses*/
+/*Rubros que no tienen ventas en los ï¿½ltimos 2 meses*/
 SELECT * FROM rubro 
 WHERE id_rubro NOT IN (
 	SELECT rubro.id_rubro
 	FROM venta INNER JOIN producto ON venta.codigo_producto = producto.codigo
 	INNER JOIN rubro ON producto.id_rubro = rubro.id_rubro
 	WHERE fecha > DATEADD(MONTH, -2, fecha)
+>>>>>>> origin/master
 	)
