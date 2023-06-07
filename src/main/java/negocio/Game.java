@@ -80,28 +80,7 @@ public class Game {
             // DETERMINANDO GANADOR DEL GAME
             if (ganoGame(ganadorPunto)) {
                 ganadorGame = ganadorPunto;
-                if (!tiebreak) {
-                    continue;
-                }
-            }
-
-            // SUMANDO PUNTOS
-            if (ganadorPunto == jugador1) {
-                if (tiebreak) {
-                    puntosJ1++;
-                }
-                else {
-                    if (puntosJ2 == 4) { puntosJ2--; }
-                    else { puntosJ1++; }
-                }
-            } else if (ganadorPunto == jugador2) {
-                if (tiebreak) {
-                    puntosJ2++;
-                }
-                else {
-                    if (puntosJ1 == 4) { puntosJ1--; }
-                    else { puntosJ2++; }
-                }
+                continue;
             }
 
             interfaz.mostrarResultadoParcialGame(this, ganadorPunto);
@@ -122,19 +101,27 @@ public class Game {
 
         if (ganadorPunto == jugador1) {
             if (tiebreak) {
-                // IGUAL A 6 Y DIFERENCIA DE 1 PORQUE NO SE SUMÓ EL PUNTO TODAVIA
-                gano = (puntosJ1 >= 6 && puntosJ1 - puntosJ2 >= 1);
+                puntosJ1++;
+                gano = (puntosJ1 >= 7 && puntosJ1 - puntosJ2 >= 2);
             }
             else {
                 gano = (puntosJ1 == 3 && puntosJ2 <= 2) || (puntosJ1 == 4 && puntosJ2 == 3);
+                if (!gano) {
+                    if (puntosJ2 == 4) { puntosJ2--; }
+                    else { puntosJ1++; }
+                }
             }
         } else if (ganadorPunto == jugador2) {
             if (tiebreak) {
-                // DIFERENCIA DE 1 PORQUE NO SE SUMÓ EL PUNTO TODAVIA
-                gano = (puntosJ2 >= 6 && puntosJ2 - puntosJ1 >= 1);
+                puntosJ2++;
+                gano = (puntosJ2 >= 7 && puntosJ2 - puntosJ1 >= 2);
             }
             else {
                 gano = (puntosJ2 == 3 && puntosJ1 <= 2) || (puntosJ2 == 4 && puntosJ1 == 3);
+                if (!gano) {
+                    if (puntosJ1 == 4) { puntosJ1--; }
+                    else { puntosJ2++; }
+                }
             }
         }
 

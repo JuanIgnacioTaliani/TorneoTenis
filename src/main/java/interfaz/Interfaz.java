@@ -12,6 +12,7 @@ public class Interfaz {
         System.out.println("GANADOR DEL TORNEO: \"" + ganadorTorneo.toString().toUpperCase() + "\"");
         System.out.println(torneo);
     }
+
     public void mostrarGanadorPartido(Jugador ganadorPartido) {
         System.out.println("\nGANADOR DEL PARTIDO: " + ganadorPartido.toString().toUpperCase());
     }
